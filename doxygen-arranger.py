@@ -242,19 +242,19 @@ def getDoxyCmdInLine(allCmds, line):
 gDoxyCmdPrefix = '@'
 
 def getReformattedDoxyCommentOneLine(oneCodeLine, lineNum, headerPath, funcInfo):
-    # temp
-    tokens = oneCodeLine.split()
-    #print tokens
-    for i in range(len(tokens)):
-        if i>0 and i<len(tokens)-1 and tokens[i]=='name' and tokens[i-1]=='///<':
-            #print oneCodeLine
-            oneCodeLine = oneCodeLine.replace(tokens[i],'',1)
-            oneCodeLine = oneCodeLine.replace(tokens[i+1],'',1)
-            pos = oneCodeLine.find('///<')
-            oneCodeLine = oneCodeLine[:pos] + '///< ' + oneCodeLine[pos+4:].lstrip()
-            #print oneCodeLine
-            #print
-            break
+    # temp - to remove property name
+    #tokens = oneCodeLine.split()
+    ##print tokens
+    #for i in range(len(tokens)):
+    #    if i>0 and i<len(tokens)-1 and tokens[i]=='name' and tokens[i-1]=='///<':
+    #        #print oneCodeLine
+    #        oneCodeLine = oneCodeLine.replace(tokens[i],'',1)
+    #        oneCodeLine = oneCodeLine.replace(tokens[i+1],'',1)
+    #        pos = oneCodeLine.find('///<')
+    #        oneCodeLine = oneCodeLine[:pos] + '///< ' + oneCodeLine[pos+4:].lstrip()
+    #        #print oneCodeLine
+    #        #print
+    #        break
 
     for mandatoryCmd in mandatoryCmdsOneLine:
         if mandatoryCmd not in oneCodeLine:
@@ -319,10 +319,10 @@ def getReformattedDoxyCommentLines(doxyCommentLines, lineNum, headerPath, funcIn
         if len(realTokens)>0:
 
             # temp - to remove markdown table
-            if len(realTokens[0]) > 0 and \
-                realTokens[0][0] == '|' or \
-                ( len(realTokens)==1 and ( realTokens[0]=='Signals' or realTokens[0]=='Actions' ) ):
-                continue
+            #if len(realTokens[0]) > 0 and \
+            #    realTokens[0][0] == '|' or \
+            #    ( len(realTokens)==1 and ( realTokens[0]=='Signals' or realTokens[0]=='Actions' ) ):
+            #    continue
 
             if realTokens[0] not in cmdGroups:
                 if isInDoxyCmdGroup(realTokens[0], noProcessCmds):
